@@ -1,8 +1,9 @@
-var store; 
+var store=0; 
 var score = 0; 
 
 function increaseScore(){
     score += 10; 
+    document.querySelector("#storeScore").textContent = score;
 }
 
 function makeBubble(){ 
@@ -16,7 +17,7 @@ function makeBubble(){
     document.querySelector("#pbtm").innerHTML= clutter;
 }
 
-var timer = 60;
+var timer = 3;
 function makeTimer(){
   var time = setInterval(function(){
         if(timer>0){
@@ -25,6 +26,7 @@ function makeTimer(){
         }
         else{
             clearInterval(time);
+            document.querySelector("#pbtm").innerHTML = `<h1>Game Over</h1>`
         }
     },1000)
 } 
@@ -35,9 +37,9 @@ function newHit(){
     document.querySelector("#hitKaro").textContent=store;
 }
 
-    document.querySelector("#storeScore").addEventListener("click",function(dets){
+    document.querySelector("#pbtm").addEventListener("click",function(dets){
         var clickedNumber = Number(dets.target.textContent);
-        if(clickedNumber == newHit){
+        if(clickedNumber == store){ 
             increaseScore(); 
             newHit(); 
             makeBubble();
